@@ -32,23 +32,16 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
    
-    # Build the Docker image
     - name: Build Docker Image
       run: |
-        docker build -t myrepo/decompiler-explorer:dev -f Dockerfile.dev .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:dev -f dockerfile.dev .
+
 
     # Run the Docker container for testing
     - name: Run Container
       run: |
         docker run -d --name decompiler-explorer-test -p 8000:8000 myrepo/decompiler-explorer:dev
         sleep 5 # Wait for container to start
-        
-
-    # Cleanup
-    - name: Stop and Remove Container
-      run: |
-        docker stop decompiler-explorer-test
-        docker rm decompiler-explorer-test
 
 
     - name: Tag Docker Image
