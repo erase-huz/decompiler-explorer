@@ -16,6 +16,10 @@ jobs:
     # Checkout the repository code
     - name: Checkout Code
       uses: actions/checkout@v3
+      
+    # Docker Hub'dan çıkış yapma
+    - name: Logout from DockerHub
+      run: docker logout || echo "Already logged out"
 
     # Set up Docker Buildx (for multi-platform builds if needed)
     - name: Set up Docker Buildx
