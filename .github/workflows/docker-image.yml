@@ -40,7 +40,7 @@ jobs:
     # Run the Docker container for testing
     - name: Run Container
       run: |
-        docker run -d --name decompiler-explorer-test -p 8000:8000 myrepo/decompiler-explorer:dev
+        docker run -d --name decompiler-explorer-dev -p 8000:8000 myrepo/decompiler-explorer:dev
         sleep 5 # Wait for container to start
 
 
