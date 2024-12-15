@@ -34,7 +34,7 @@ jobs:
    
     - name: Build Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:dev -f dockerfile.dev .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:dev -f Dockerfile.dev .
 
 
     # Run the Docker container for testing
