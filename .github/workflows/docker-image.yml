@@ -34,7 +34,7 @@ jobs:
    
     - name: Build Docker Image
       run: |
-        docker build -t myrepo/decompiler-explorer:dev -f Dockerfile.dev .
+        docker build -t ***/decompiler-explorer:dev -f dockerfile.dev .
 
 
     # Run the Docker container for testing
