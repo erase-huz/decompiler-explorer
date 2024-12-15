@@ -19,7 +19,7 @@ jobs:
       
     # Docker Hub'dan çıkış yapma
     - name: Logout from DockerHub
-      run: docker logout || echo "Already logged out"
+      run: docker logout || echo "Already logged out" 
 
     # Set up Docker Buildx (for multi-platform builds if needed)
     - name: Set up Docker Buildx
