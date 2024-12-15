@@ -41,7 +41,7 @@ jobs:
     - name: Run Container
       run: |
         docker run -d --name decompiler-explorer-dev -p 8000:8000 eraserase/decompiler-explorer:dev
-        sleep 5 # Wait for container to start
+        sleep 25 # Wait for container to start
 
 
     - name: Tag Docker Image
