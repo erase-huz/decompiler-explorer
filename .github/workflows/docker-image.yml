@@ -38,11 +38,10 @@ jobs:
       run: |
         docker run -d --name decompiler-explorer-test -p 8000:8000 myrepo/decompiler-explorer:dev
         sleep 5 # Wait for container to start
-
-    # Test the application (simple example using curl)
-    - name: Test Application
+        
+    - name: Test Gunicorn Start
       run: |
-        curl -f http://localhost:8000 || exit 1
+        docker exec decompiler-explorer-test gunicorn --reload --capture-output -w 4 --bind 0.0.0.0:8000 decompiler_explorer.wsgi
 
     # Cleanup
     - name: Stop and Remove Container
