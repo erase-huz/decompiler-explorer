@@ -50,9 +50,11 @@ jobs:
         docker stop decompiler-explorer-test
         docker rm decompiler-explorer-test
 
-    # Push image to DockerHub (optional)
-    - name: Push Docker Image to DockerHub
-      if: success()
+
+    - name: Tag Docker Image
       run: |
-        docker tag myrepo/decompiler-explorer:dev myrepo/decompiler-explorer:latest
-        docker push myrepo/decompiler-explorer:latest
+        docker tag ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:dev ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:latest
+
+    - name: Push Docker Image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/decompiler-explorer:latest
