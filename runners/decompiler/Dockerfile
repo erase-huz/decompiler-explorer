@@ -198,7 +198,7 @@ RUN wget https://github.com/BoomerangDecompiler/boomerang/releases/download/v0.5
 
 USER decompiler_user
 WORKDIR /home/decompiler_user
-COPY decompile_boomerang.py .
+COPY runner/decompiler/decompile_boomerang.py .
 
 COPY entrypoint.sh .
 COPY runner/decompiler/runner_generic.py .
@@ -254,7 +254,7 @@ RUN git clone --depth=1 --branch=v2024-10-01 https://github.com/fkie-cad/dewolf.
     && pipenv run python /home/decompiler_user/binaryninja/scripts/install_api.py
 
 ENV PYTHONPATH=/home/decompiler_user/binaryninja/python/:$PYTHONPATH
-COPY decompile_dewolf.py .
+COPY runner/decompiler/decompile_dewolf.py .
 COPY entrypoint.sh .
 COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_dewolf.py" ]
@@ -295,9 +295,9 @@ RUN mkdir -p $WINEPREFIX/drive_c/users/decompiler_user/AppData/Roaming/Relyze
 
 COPY tools/relyze/License.txt $WINEPREFIX/drive_c/users/decompiler_user/AppData/Roaming/Relyze
 COPY tools/relyze/decompiler_explorer.rb .
-COPY decompile_relyze.py .
+COPY runner/decompiler/decompile_relyze.py .
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_relyze.py" ]
 
 # rev.ng
@@ -312,8 +312,8 @@ RUN cd / && curl -L -s 'https://rev.ng/downloads/revng-distributable/master/inst
 
 USER decompiler_user
 WORKDIR /home/decompiler_user
-COPY decompile_revng.py .
+COPY runner/decompiler/decompile_revng.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_revng.py" ]
