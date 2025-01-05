@@ -38,7 +38,7 @@ COPY decompile_bn.py .
 ENV PYTHONPATH=/home/decompiler_user/binaryninja/python/:$PYTHONPATH
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_bn.py" ]
 
 
@@ -51,10 +51,10 @@ RUN apt-get update \
 
 USER decompiler_user
 RUN pip install --user 'angr~=9.2.130'
-COPY decompile_angr.py .
+COPY runner/decompiler/decompile_angr.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_angr.py" ]
 
 
@@ -78,10 +78,10 @@ RUN wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghid
     && mv ghidra_* ghidra
 
 COPY tools/ghidra/DecompilerExplorer.java .
-COPY decompile_ghidra.py .
+COPY runner/decompiler/decompile_ghidra.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_ghidra.py" ]
 
 # Snowman
@@ -99,10 +99,10 @@ RUN git clone https://github.com/mborgerson/snowman.git \
     && cmake --install snowman/build \
     && rm -rf snowman
 
-COPY decompile_snowman.py .
+COPY runner/decompiler/decompile_snowman.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_snowman.py" ]
 
 # RetDec
@@ -120,10 +120,10 @@ RUN wget https://github.com/avast/retdec/releases/download/v5.0/RetDec-v5.0-Linu
     && tar xf ../RetDec-v5.0-Linux-Release.tar.xz \
     && cd .. \
     && rm RetDec-v5.0-Linux-Release.tar.xz
-COPY decompile_retdec.py .
+COPY runner/decompiler/decompile_retdec.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_retdec.py" ]
 
 # RecStudio
@@ -141,10 +141,10 @@ RUN wget http://www.backerstreet.com/rec/RecStudioLinux.tgz \
     && rm 'RecStudioLinux.tgz' \
     && mkdir output
 WORKDIR /home/decompiler_user
-COPY decompile_recstudio.py .
+COPY runner/decompiler/decompile_recstudio.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_recstudio.py" ]
 
 # Reko
@@ -177,10 +177,10 @@ RUN mkdir reko \
     && unzip ../CmdLine.zip
 
 WORKDIR /home/decompiler_user
-COPY decompile_reko.py .
+COPY runner/decompiler/decompile_reko.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_reko.py" ]
 
 # Boomerang
@@ -201,7 +201,7 @@ WORKDIR /home/decompiler_user
 COPY decompile_boomerang.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_boomerang.py" ]
 
 # Hex-Rays
@@ -226,10 +226,10 @@ RUN /home/decompiler_user/ida/idapyswitch --force-path /usr/local/lib/libpython3
 USER decompiler_user
 WORKDIR /home/decompiler_user
 
-COPY decompile_hexrays.py .
+COPY runner/decompiler/decompile_hexrays.py .
 
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_hexrays.py" ]
 
 # Dewolf
@@ -256,7 +256,7 @@ RUN git clone --depth=1 --branch=v2024-10-01 https://github.com/fkie-cad/dewolf.
 ENV PYTHONPATH=/home/decompiler_user/binaryninja/python/:$PYTHONPATH
 COPY decompile_dewolf.py .
 COPY entrypoint.sh .
-COPY runner_generic.py .
+COPY runner/decompiler/runner_generic.py .
 ENTRYPOINT [ "./entrypoint.sh", "decompile_dewolf.py" ]
 
 # Relyze
