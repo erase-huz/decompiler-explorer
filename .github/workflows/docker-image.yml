@@ -34,7 +34,7 @@ jobs:
    
     - name: Build Docker Image
       run: |
-        docker build -t eraserase/decompiler-explorer:dev -f ./runners/decompiler/Dockerfile .
+        docker build -t eraserase/decompiler-explorer:dev -f runners/decompiler/Dockerfile .
 
     - name: Push Docker Image
       run: |
